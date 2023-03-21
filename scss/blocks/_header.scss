@@ -1,0 +1,217 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2.4rem;
+  margin-bottom: 12rem;
+  gap: 50px;
+  &__logo {
+    @include text($ff, 3.6rem, 4.8rem, 700, $primary);
+    display: flex;
+    flex-grow: 1;
+  }
+  &__burger {
+    order: 99;
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    width: 30px;
+    height: 18px;
+    cursor: pointer;
+    @include tablet {
+      display: flex;
+    }
+    span {
+      height: 3px;
+      width: 80%;
+      border-radius: 3px;
+      transform: scale(1);
+      background-color: $paragraph;
+      transition: $transition;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+      background-color: $paragraph;
+      transition: $transition;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+    &.active span {
+      transform: scale(0);
+    }
+    &.active::before {
+      top: 50%;
+      transform: rotate(-45deg) translate(0, -50%);
+    }
+    &.active::after {
+      bottom: 50%;
+      transform: rotate(45deg) translate(0, 50%);
+    }
+  }
+}
+.nav {
+  &__ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: $transition;
+    gap: 40px;
+    ._header {
+      order: 98;
+    }
+    @include tablet {
+      position: fixed;
+      @include tablet-small {
+        width: 35%;
+      }
+      width: 30%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      overflow: auto;
+      background: $paragraph;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      z-index: 5;
+      transition: $transition;
+      box-shadow: 3px 3px 8px 1px $black;
+      transform: translateX(-150%);
+      &.active {
+        transform: translateX(0);
+      }
+      .nav__a {
+        color: $grey;
+        font-size: 20px;
+        transition: $transition;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &__li {
+  }
+
+  &__a {
+    @include text($ff, 1.6rem, 2.4rem, 700, $text);
+    transition: $transition;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+@import "https://unpkg.com/open-props/easings.min.css";
+
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center;
+}
+
+.sun-and-moon > :is(.moon, .sun) {
+  fill: $sun;
+}
+
+.theme-toggle:is(:focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: $dark;
+}
+
+.sun-and-moon > .sun-beams {
+  stroke: $sun;
+  stroke-width: 2px;
+}
+
+.theme-toggle:is(:focus-visible) .sun-and-moon > .sun-beams {
+  stroke: $dark;
+}
+
+[data-theme="dark"] .sun-and-moon > .sun {
+  transform: scale(1.75);
+}
+
+[data-theme="dark"] .sun-and-moon > .sun-beams {
+  opacity: 0;
+}
+
+[data-theme="dark"] .sun-and-moon > .moon > circle {
+  transform: translateX(-7px);
+}
+
+@supports (cx: 1) {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    cx: 17;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform 0.5s var(--ease-elastic-3);
+  }
+
+  .sun-and-moon > .sun-beams {
+    transition: transform 0.5s var(--ease-elastic-4), opacity 0.5s var(--ease-3);
+  }
+
+  .sun-and-moon .moon > circle {
+    transition: transform 0.25s var(--ease-out-5);
+  }
+
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx 0.25s var(--ease-out-5);
+    }
+  }
+
+  [data-theme="dark"] .sun-and-moon > .sun {
+    transition-timing-function: var(--ease-3);
+    transition-duration: 0.25s;
+    transform: scale(1.75);
+  }
+
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
+    transition-duration: 0.15s;
+    transform: rotateZ(-25deg);
+  }
+
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transition-duration: 0.5s;
+    transition-delay: 0.25s;
+  }
+}
+// -------------------------------------------------------------------------------------
+.theme__dark {
+  .nav__a {
+    color: $white;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .header__burger {
+    span {
+      background-color: $white;
+    }
+    &::before,
+    &::after {
+      background-color: $white;
+    }
+  }
+  .nav__ul {
+    @include tablet {
+      background: $darkcontainer;
+    }
+  }
+}

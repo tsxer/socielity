@@ -1,0 +1,81 @@
+.why-section {
+  margin-bottom: 10rem;
+  &__title {
+    @include text($ff, 2.6rem, 4.8rem, 700, $paragraph);
+    text-align: center;
+    margin-bottom: 2.4rem;
+  }
+
+  &__desc {
+    @include text($ff, 1.6rem, 2.4rem, 400, $text);
+    text-align: center;
+    max-width: 743px;
+    margin-inline: auto;
+    margin-bottom: 5.1rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 30px;
+  }
+}
+.grid-item {
+  background: $grid;
+  border-radius: 8px;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: $transition;
+  &__img {
+    margin-bottom: 13px;
+    align-items: center;
+    img {
+      height: 60px;
+    }
+  }
+
+  &__title {
+    @include text($ff, 2rem, 2.8rem, 700, $paragraph);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  &__desc {
+    @include text($ff, 1.6rem, 2.4rem, 400, $text);
+    text-align: center;
+    height: 103px;
+  }
+}
+.why-section__grid:hover .grid-item {
+  filter: blur(3px);
+  opacity: 0.5;
+  transform: scale(0.98);
+  box-shadow: none;
+}
+.why-section__grid:hover .grid-item:hover {
+  transform: scale(1.05);
+  filter: blur(0px);
+  opacity: 1;
+  box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.125);
+}
+
+.theme__dark {
+  .why-section__title {
+    color: $white;
+  }
+  .why-section__desc {
+    color: $white;
+  }
+  .grid-item {
+    background-color: $darkgrid;
+    &__title {
+      color: $white;
+    }
+    &__desc {
+      color: $white;
+    }
+  }
+}

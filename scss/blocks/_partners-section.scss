@@ -1,0 +1,40 @@
+.partners-section {
+  margin-bottom: 15.7rem;
+  &__title {
+    @include text($ff, 2.6rem, 4.8rem, 700, $paragraph);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  &__desc {
+    margin-inline: auto;
+    max-width: 875px;
+    @include text($ff, 1.6rem, 2.4rem, 700, $text);
+    text-align: center;
+    margin-bottom: 4.6rem;
+  }
+
+  &__grid {
+    padding: 7px 0 13px;
+    padding: 0 20px;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @include tablet {
+      gap: 20px;
+    }
+  }
+}
+
+.theme__dark {
+  .partners-section__title {
+    color: $white;
+  }
+  .partners-section__desc {
+    color: $white;
+  }
+  .partners-section__grid {
+    background: $darkcontainer;
+  }
+}

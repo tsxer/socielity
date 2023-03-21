@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  @include tablet-small {
+    font-size: 9px;
+  }
+  @include mobile {
+    font-size: 8px;
+  }
+}
+
+body {
+  font-family: $ff;
+  transition: $transition;
+}
+
+.container {
+  max-width: $container;
+  padding: 0 20px;
+  margin-inline: auto;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+.btn {
+  padding: 1.3rem 3.4rem;
+  background: $primary;
+  border-radius: 8px;
+  @include text($ff, 1.6rem, 2.4rem, 700, $white);
+  text-align: center;
+  position: relative;
+  transition: $transition;
+  &:hover,
+  &:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    background: $footer;
+  }
+}
+
+.theme__dark {
+  background-color: $dark;
+  .btn {
+    color: $dark;
+  }
+}
